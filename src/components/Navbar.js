@@ -3,15 +3,8 @@ import { NavLink } from "react-router-dom";
 
 // Navigation bar component that appears at the top of every page
 const Navbar = () => {
-  // Function to determine which CSS class to use for navigation links
-  // If the link is active (current page), add the active class
-  const getLinkClass = (navData) => {
-    if (navData.isActive) {
-      return "nav-link nav-link-active";
-    } else {
-      return "nav-link";
-    }
-  };
+  const getLinkClass = ({ isActive }) =>
+    isActive ? "nav-link nav-link-active" : "nav-link";
 
   return (
     <header className="navbar">

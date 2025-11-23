@@ -1,48 +1,26 @@
 import React, { useState } from "react";
 import "../styles/Contact.css";
 
-// Contact page with a form for users to send messages
 const Contact = () => {
-  // State to store form data
   const [form, setForm] = useState({
     fullName: "",
     email: "",
     message: ""
   });
 
-  // This function runs when user types in any input field
   const handleChange = (event) => {
-    // Get the name and value from the input that changed
-    const fieldName = event.target.name;
-    const fieldValue = event.target.value;
-
-    // Update the form state with the new value
-    setForm({
-      fullName: fieldName === "fullName" ? fieldValue : form.fullName,
-      email: fieldName === "email" ? fieldValue : form.email,
-      message: fieldName === "message" ? fieldValue : form.message
-    });
+    const { name, value } = event.target;
+    setForm((previous) => ({
+      ...previous,
+      [name]: value
+    }));
   };
 
-  // This function runs when user submits the form
   const handleSubmit = (event) => {
-    // Prevent the page from refreshing
     event.preventDefault();
-
-    // Show an alert with the form data (in a real app, this would send to a server)
     alert(
-      "Form submitted!\n\n" + 
-      "Name: " + form.fullName + "\n" +
-      "Email: " + form.email + "\n" +
-      "Message: " + form.message
+      "Form submitted!\n\n" + JSON.stringify(form, null, 2)
     );
-
-    // Clear the form after submission
-    setForm({
-      fullName: "",
-      email: "",
-      message: ""
-    });
   };
 
   return (
@@ -54,7 +32,6 @@ const Contact = () => {
       </p>
 
       <form onSubmit={handleSubmit} className="contact-form">
-        {/* Full name input */}
         <div className="form-field">
           <label htmlFor="fullName" className="form-label">
             Full name
@@ -71,7 +48,6 @@ const Contact = () => {
           />
         </div>
 
-        {/* Email input */}
         <div className="form-field">
           <label htmlFor="email" className="form-label">
             Email
@@ -88,7 +64,6 @@ const Contact = () => {
           />
         </div>
 
-        {/* Message textarea */}
         <div className="form-field">
           <label htmlFor="message" className="form-label">
             Message
@@ -104,7 +79,6 @@ const Contact = () => {
           />
         </div>
 
-        {/* Submit button */}
         <button type="submit" className="submit-button">
           Send message
         </button>

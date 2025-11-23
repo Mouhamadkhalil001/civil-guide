@@ -1,87 +1,76 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/Jobs.css";
 import JobCard from "../components/JobCard";
-import SearchFilters from "../components/SearchFilters";
-import { useJobFilters } from "../hooks/useJobFilters";
 import { jobs } from "../data/jobs";
 
-// This is the main jobs listing page
 const Jobs = () => {
-  // Get all the filter logic and state from our custom hook
-  const filterData = useJobFilters(jobs);
+  const [searchText, setSearchText] = useState("");
+  const [location, setLocation] = useState("all");
 
-  // Extract the values we need from the hook
-  const searchText = filterData.searchText;
-  const location = filterData.location;
-  const category = filterData.category;
-  const type = filterData.type;
-  const locations = filterData.locations;
-  const categories = filterData.categories;
-  const types = filterData.types;
-  const handleSearchTextChange = filterData.handleSearchTextChange;
-  const handleLocationChange = filterData.handleLocationChange;
-  const handleCategoryChange = filterData.handleCategoryChange;
-  const handleTypeChange = filterData.handleTypeChange;
-  const handleClearFilters = filterData.handleClearFilters;
-  const hasActiveFilters = filterData.hasActiveFilters;
-  const filteredJobs = filterData.filteredJobs;
+  const handleTextChange = (event) => {
+    setSearchText(event.target.value);
+  };
 
-  // Figure out the job count text
-  let jobCountText = "";
-  if (filteredJobs.length === 0) {
-    // No jobs found, we'll show a message later
-  } else if (filteredJobs.length === 1) {
-    jobCountText = "1 job found";
-  } else {
-    jobCountText = filteredJobs.length + " jobs found";
-  }
+  const handleLocationChange = (event) => {
+    setLocation(event.target.value);
+  };
+
+  const filteredJobs = jobs.filter((job) => {
+    const text = searchText.toLowerCase();
+    const matchesText =
+      job.title.toLowerCase().includes(text) ||
+      job.company.toLowerCase().includes(text) ||
+      job.category.toLowerCase().includes(text);
+
+    const matchesLocation =
+      location === "all" ||
+      job.location.toLowerCase() === location.toLowerCase();
+
+    return matchesText && matchesLocation;
+  });
 
   return (
     <div>
-      {/* Page header with title and job count */}
-      <div className="jobs-header">
-        <h1 className="jobs-title">Jobs directory</h1>
-        {filteredJobs.length > 0 && (
-          <p className="jobs-count">{jobCountText}</p>
-        )}
+      <h1 className="jobs-title">Jobs directory</h1>
+
+      <div className="jobs-filters">
+        <div className="jobs-field">
+          <label htmlFor="searchText">Keyword</label>
+          <input
+            id="searchText"
+            type="text"
+            className="jobs-input"
+            placeholder="Search by title, company, or category"
+            value={searchText}
+            onChange={handleTextChange}
+          />
+        </div>
+
+        <div className="jobs-field">
+          <label htmlFor="location">Location</label>
+          <select
+            id="location"
+            className="jobs-select"
+            value={location}
+            onChange={handleLocationChange}
+          >
+            <option value="all">All Lebanon</option>
+            <option value="Beirut">Beirut</option>
+            <option value="Saida">Saida</option>
+            <option value="Tripoli">Tripoli</option>
+            <option value="Zahle">Zahle</option>
+            <option value="Online / Remote">Online / Remote</option>
+          </select>
+        </div>
       </div>
 
-      {/* The filter component */}
-      <SearchFilters
-        searchText={searchText}
-        location={location}
-        category={category}
-        type={type}
-        locations={locations}
-        categories={categories}
-        types={types}
-        onSearchTextChange={handleSearchTextChange}
-        onLocationChange={handleLocationChange}
-        onCategoryChange={handleCategoryChange}
-        onTypeChange={handleTypeChange}
-        onClearFilters={handleClearFilters}
-      />
-
-      {/* Show message if no jobs found */}
       {filteredJobs.length === 0 ? (
-        <div className="jobs-empty">
-          <p className="jobs-message">No jobs match your search.</p>
-          {hasActiveFilters && (
-            <button
-              type="button"
-              className="clear-filters-button"
-              onClick={handleClearFilters}
-            >
-              Clear all filters
-            </button>
-          )}
-        </div>
+        <p className="jobs-message">No jobs match your search.</p>
       ) : (
-        /* Show the list of job cards */
         <div className="jobs-list">
-          {filteredJobs.map((job) => {
-            return <JobCard key={job.id} job={job} />;
-          })}
+          {filteredJobs.map((job) => (
+            <JobCard key={job.id} job={job} />
+          ))}
         </div>
       )}
     </div>
