@@ -1,0 +1,14 @@
+.notfound {
+  text-align: center;
+  padding: 40px 16px;
+}
+
+.notfound-title {
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+}
+
+.notfound-text {
+  font-size: 0.95rem;
+  margin-bottom: 16px;
+}
