@@ -10,31 +10,36 @@ const Navbar = () => {
     <header className="navbar">
       <div className="navbar-inner">
         {/* Site logo/brand name */}
-        <div className="navbar-brand">Civil Guide</div>
+        <div className="navbar-brand">
+          <span className="navbar-brand-icon">📋</span>
+          <span className="navbar-brand-text">Civil Guide</span>
+        </div>
         
         {/* Navigation links */}
-        <ul className="nav-links">
-          <li>
-            <NavLink to="/" end className={getLinkClass}>
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/jobs" className={getLinkClass}>
-              Jobs
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/about" className={getLinkClass}>
-              About
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/contact" className={getLinkClass}>
-              Contact
-            </NavLink>
-          </li>
-        </ul>
+        <nav className="navbar-nav">
+          <ul className="nav-links">
+            <li>
+              <NavLink to="/" end className={getLinkClass}>
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/jobs" className={getLinkClass}>
+                Jobs
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/about" className={getLinkClass}>
+                About
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/contact" className={getLinkClass}>
+                Contact
+              </NavLink>
+            </li>
+          </ul>
+        </nav>
       </div>
     </header>
   );

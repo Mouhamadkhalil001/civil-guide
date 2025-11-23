@@ -13,26 +13,38 @@ const Home = () => {
   }
 
   return (
-    <div>
+    <div className="home-page">
       {/* Hero section at the top */}
       <section className="home-hero">
-        <h1 className="home-hero-title">Welcome to the Civil Guide</h1>
-        <p className="home-hero-text">
-          Join a simple civil directory that helps you explore public
-          services and job opportunities easily.
-        </p>
-        <p className="home-hero-text">
-          You can quickly browse available positions, see basic details,
-          and focus on roles that match students or fresh graduates.
-        </p>
-        <Link to="/jobs" className="primary-button">
-          Browse all jobs
-        </Link>
+        <div className="home-hero-content">
+          <h1 className="home-hero-title">
+            Welcome to the <span className="highlight">Civil Guide</span>
+          </h1>
+          <p className="home-hero-text">
+            Join a simple civil directory that helps you explore public
+            services and job opportunities easily.
+          </p>
+          <p className="home-hero-text">
+            You can quickly browse available positions, see basic details,
+            and focus on roles that match students or fresh graduates.
+          </p>
+          <div className="home-hero-actions">
+            <Link to="/jobs" className="primary-button">
+              Browse all jobs
+            </Link>
+            <Link to="/about" className="secondary-button">
+              Learn more
+            </Link>
+          </div>
+        </div>
       </section>
 
       {/* Featured jobs section */}
-      <section>
-        <h2 className="section-title">Featured jobs</h2>
+      <section className="home-featured">
+        <div className="section-header">
+          <h2 className="section-title">Featured jobs</h2>
+          <p className="section-subtitle">Discover the latest opportunities</p>
+        </div>
         <div className="job-grid">
           {featured.map((job) => {
             return <JobCard key={job.id} job={job} />;

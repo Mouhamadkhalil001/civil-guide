@@ -5,15 +5,25 @@ import "../styles/NotFound.css";
 // 404 error page - shown when user visits a page that doesn't exist
 const NotFound = () => {
   return (
-    <div className="notfound">
-      <h1 className="notfound-title">Page not found</h1>
-      <p className="notfound-text">
-        The page you are looking for does not exist.
-      </p>
-      {/* Link to go back to homepage */}
-      <Link to="/" className="primary-button">
-        Back to home
-      </Link>
+    <div className="notfound-page">
+      <div className="notfound-content">
+        <div className="notfound-icon">404</div>
+        <h1 className="notfound-title">Page Not Found</h1>
+        <p className="notfound-text">
+          Oops! The page you are looking for does not exist.
+        </p>
+        <p className="notfound-hint">
+          It might have been moved, deleted, or the URL might be incorrect.
+        </p>
+        <div className="notfound-actions">
+          <Link to="/" className="primary-button">
+            Go to Homepage
+          </Link>
+          <Link to="/jobs" className="secondary-button">
+            Browse Jobs
+          </Link>
+        </div>
+      </div>
     </div>
   );
 };
