@@ -201,18 +201,3 @@ This project demonstrates:
 - ✅ State management patterns
 - ✅ Modern CSS (variables, flexbox, grid)
 
-## 📝 Notes
-
-- **No Backend**: All data is static and client-side only
-- **No Database**: Jobs are stored in a JavaScript array
-- **No Authentication**: Sign in/Sign up pages are demo only
-- **Educational**: Perfect for learning React fundamentals
-
-## 🤝 Contributing
-
-This is an educational project. Feel free to:
-- Add more job listings
-- Enhance the UI/UX
-- Add new features
-- Improve documentation
-
