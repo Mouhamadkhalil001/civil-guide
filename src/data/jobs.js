@@ -6,6 +6,7 @@ export const jobs = [
     location: "Beirut",
     type: "Full Time",
     category: "IT / Development",
+    salary: "$800 - $1,200",
     description:
       "Assist in building and maintaining web pages and small web apps using HTML, CSS, JavaScript, and React."
   },
@@ -16,6 +17,7 @@ export const jobs = [
     location: "Saida",
     type: "Full Time",
     category: "Administration",
+    salary: "$600 - $900",
     description:
       "Support daily office tasks, data entry, and communication with citizens and departments."
   },
@@ -26,6 +28,7 @@ export const jobs = [
     location: "Tripoli",
     type: "Part Time",
     category: "Customer Service",
+    salary: "$400 - $600",
     description:
       "Help citizens by answering questions about services, appointments, and required documents."
   },
@@ -36,6 +39,7 @@ export const jobs = [
     location: "Beirut",
     type: "Internship",
     category: "IT / Support",
+    salary: "$300 - $500",
     description:
       "Provide technical support for computers and network, ideal for students starting in IT."
   },
@@ -46,6 +50,7 @@ export const jobs = [
     location: "Online / Remote",
     type: "Contract",
     category: "Media / Communication",
+    salary: "$500 - $800",
     description:
       "Prepare simple posts and announcements about youth activities and public events."
   },
@@ -56,6 +61,7 @@ export const jobs = [
     location: "Zahle",
     type: "Full Time",
     category: "Data / Administration",
+    salary: "$550 - $750",
     description:
       "Enter and check citizen information in the internal system with good attention to detail."
   }

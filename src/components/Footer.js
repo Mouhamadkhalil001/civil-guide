@@ -1,14 +1,28 @@
+// Import React library
 import React from "react";
+// Import Link component for navigation
 import { Link } from "react-router-dom";
 
-// Footer component that appears at the bottom of every page
+/**
+ * Footer Component
+ * 
+ * This component creates the footer that appears at the bottom of every page.
+ * It includes:
+ * - Site description
+ * - Quick navigation links
+ * - Copyright information
+ */
 const Footer = () => {
-  // Get the current year for the copyright
+  // Get the current year using JavaScript Date object
+  // This ensures copyright always shows current year automatically
   const currentYear = new Date().getFullYear();
 
+  // Return the JSX for the footer
   return (
     <footer className="footer">
+      {/* Main footer content area */}
       <div className="footer-content">
+        {/* Left section - site info */}
         <div className="footer-section">
           <h3 className="footer-title">Civil Guide</h3>
           <p className="footer-description">
@@ -16,9 +30,11 @@ const Footer = () => {
           </p>
         </div>
         
+        {/* Right section - quick links */}
         <div className="footer-section">
           <h4 className="footer-heading">Quick Links</h4>
           <ul className="footer-links">
+            {/* List of navigation links */}
             <li>
               <Link to="/">Home</Link>
             </li>
@@ -41,10 +57,13 @@ const Footer = () => {
         </div>
       </div>
       
+      {/* Bottom section - copyright and note */}
       <div className="footer-bottom">
+        {/* Copyright text with dynamic year */}
         <p className="footer-copyright">
           &copy; {currentYear} Civil Guide. All rights reserved.
         </p>
+        {/* Additional note about the project */}
         <p className="footer-note">
           Simple React project for a civil jobs directory.
         </p>
@@ -53,4 +72,5 @@ const Footer = () => {
   );
 };
 
+// Export the component
 export default Footer;

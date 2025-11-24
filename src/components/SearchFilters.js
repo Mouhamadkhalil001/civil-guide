@@ -34,7 +34,10 @@ const SearchFilters = (props) => {
     <div className="search-filters">
       {/* Search text input */}
       <div className="search-field">
-        <label htmlFor="searchText">Keyword</label>
+        <label htmlFor="searchText" className="search-label">
+          <span className="search-label-icon">🔍</span>
+          Keyword
+        </label>
         <input
           id="searchText"
           type="text"
@@ -48,7 +51,10 @@ const SearchFilters = (props) => {
       {/* Location dropdown - only show if we have locations */}
       {locations.length > 0 && (
         <div className="search-field">
-          <label htmlFor="location">Location</label>
+          <label htmlFor="location" className="search-label">
+            <span className="search-label-icon">📍</span>
+            Location
+          </label>
           <select
             id="location"
             className="search-select"
@@ -67,32 +73,13 @@ const SearchFilters = (props) => {
         </div>
       )}
 
-      {/* Category dropdown - only show if we have categories */}
-      {categories.length > 0 && (
-        <div className="search-field">
-          <label htmlFor="category">Category</label>
-          <select
-            id="category"
-            className="search-select"
-            value={category}
-            onChange={onCategoryChange}
-          >
-            <option value="all">All Categories</option>
-            {categories.map((cat) => {
-              return (
-                <option key={cat} value={cat}>
-                  {cat}
-                </option>
-              );
-            })}
-          </select>
-        </div>
-      )}
-
       {/* Job type dropdown - only show if we have types */}
       {types.length > 0 && (
         <div className="search-field">
-          <label htmlFor="type">Job Type</label>
+          <label htmlFor="type" className="search-label">
+            <span className="search-label-icon">💼</span>
+            Job Type
+          </label>
           <select
             id="type"
             className="search-select"
@@ -104,6 +91,31 @@ const SearchFilters = (props) => {
               return (
                 <option key={jobType} value={jobType}>
                   {jobType}
+                </option>
+              );
+            })}
+          </select>
+        </div>
+      )}
+
+      {/* Category dropdown - only show if we have categories */}
+      {categories.length > 0 && (
+        <div className="search-field">
+          <label htmlFor="category" className="search-label">
+            <span className="search-label-icon">📂</span>
+            Category
+          </label>
+          <select
+            id="category"
+            className="search-select"
+            value={category}
+            onChange={onCategoryChange}
+          >
+            <option value="all">All Categories</option>
+            {categories.map((cat) => {
+              return (
+                <option key={cat} value={cat}>
+                  {cat}
                 </option>
               );
             })}

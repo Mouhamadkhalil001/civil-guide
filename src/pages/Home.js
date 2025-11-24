@@ -1,37 +1,63 @@
+// Import React library
 import React from "react";
+// Import Link component for navigation between pages
 import { Link } from "react-router-dom";
+// Import CSS styles for this page
 import "../styles/Home.css";
+// Import JobCard component to display job listings
 import JobCard from "../components/JobCard";
+// Import the jobs data array
 import { jobs } from "../data/jobs";
 
-// This is the homepage component
+/**
+ * Home Page Component
+ * 
+ * This is the main landing page of the website.
+ * It shows:
+ * - A hero section with welcome message
+ * - Featured job listings (first 3 jobs)
+ */
 const Home = () => {
-  // Get the first 3 jobs to show as featured
+  // Create an array to store featured jobs
   const featured = [];
+  
+  // Loop through jobs and get the first 3 to show as featured
+  // We use a for loop to get exactly 3 jobs (or less if there aren't 3 available)
   for (let i = 0; i < 3 && i < jobs.length; i++) {
     featured.push(jobs[i]);
   }
 
+  // Return the JSX (HTML structure) for the home page
   return (
     <div className="home-page">
-      {/* Hero section at the top */}
+      {/* Hero Section - the big welcome section at the top */}
       <section className="home-hero">
         <div className="home-hero-content">
+          {/* Main welcome heading */}
           <h1 className="home-hero-title">
             Welcome to the <span className="highlight">Civil Guide</span>
           </h1>
+          
+          {/* First paragraph explaining what the site is */}
           <p className="home-hero-text">
             Join a simple civil directory that helps you explore public
             services and job opportunities easily.
           </p>
+          
+          {/* Second paragraph with more details */}
           <p className="home-hero-text">
             You can quickly browse available positions, see basic details,
             and focus on roles that match students or fresh graduates.
           </p>
+          
+          {/* Action buttons - links to other pages */}
           <div className="home-hero-actions">
+            {/* Primary button - links to jobs page */}
             <Link to="/jobs" className="primary-button">
               Browse all jobs
             </Link>
+            
+            {/* Secondary button - links to about page */}
             <Link to="/about" className="secondary-button">
               Learn more
             </Link>
@@ -39,14 +65,21 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Featured jobs section */}
+      {/* Featured Jobs Section - shows first 3 jobs */}
       <section className="home-featured">
+        {/* Section header with title and subtitle */}
         <div className="section-header">
           <h2 className="section-title">Featured jobs</h2>
           <p className="section-subtitle">Discover the latest opportunities</p>
         </div>
+        
+        {/* Grid container for job cards */}
         <div className="job-grid">
+          {/* Loop through featured jobs and create a JobCard for each */}
+          {/* map() creates a new array by calling a function on each item */}
           {featured.map((job) => {
+            // Return a JobCard component for each job
+            // key prop is required by React for lists
             return <JobCard key={job.id} job={job} />;
           })}
         </div>
@@ -55,4 +88,5 @@ const Home = () => {
   );
 };
 
+// Export the component so it can be used in App.js
 export default Home;

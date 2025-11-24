@@ -1,16 +1,33 @@
+// Import React library
 import React from "react";
+// Import CSS styles for this page
 import "../styles/About.css";
+// Import reusable components
+import PageHeader from "../components/PageHeader";
 
-// About page component
+/**
+ * About Page Component
+ * 
+ * This page provides information about the Civil Guide project.
+ * It displays:
+ * - Project mission
+ * - Project goals
+ * - Technology used
+ */
 const About = () => {
+  // Return the JSX for the about page
   return (
     <div className="about-page">
-      <div className="about-hero">
-        <h1 className="about-title">About the Civil Guide</h1>
-        <p className="about-subtitle">Your gateway to civil services and opportunities</p>
-      </div>
+      {/* Page header section */}
+      <PageHeader
+        title="About the Civil Guide"
+        subtitle="Your gateway to civil services and opportunities"
+        className="about-hero"
+      />
 
+      {/* Content cards section - displays information in cards */}
       <div className="about-content">
+        {/* Mission card */}
         <div className="about-card">
           <div className="about-card-icon">📋</div>
           <h2 className="about-card-title">Our Mission</h2>
@@ -21,6 +38,7 @@ const About = () => {
           </p>
         </div>
 
+        {/* Goal card */}
         <div className="about-card">
           <div className="about-card-icon">🎯</div>
           <h2 className="about-card-title">Our Goal</h2>
@@ -31,6 +49,7 @@ const About = () => {
           </p>
         </div>
 
+        {/* Technology card */}
         <div className="about-card">
           <div className="about-card-icon">💻</div>
           <h2 className="about-card-title">Technology</h2>
@@ -45,4 +64,5 @@ const About = () => {
   );
 };
 
+// Export the component
 export default About;
