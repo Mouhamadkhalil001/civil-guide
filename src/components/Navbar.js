@@ -38,6 +38,16 @@ const Navbar = () => {
                 Contact
               </NavLink>
             </li>
+            <li>
+              <NavLink to="/signin" className={getLinkClass}>
+                Sign In
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/signup" className={getLinkClass}>
+                Sign Up
+              </NavLink>
+            </li>
           </ul>
         </nav>
       </div>

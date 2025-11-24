@@ -141,6 +141,26 @@ const Jobs = () => {
             ))}
           </select>
         </div>
+
+        <div className="jobs-field">
+          <label htmlFor="category" className="jobs-label">
+            <span className="jobs-label-icon">📂</span>
+            Category
+          </label>
+          <select
+            id="category"
+            className="jobs-select"
+            value={category}
+            onChange={handleCategoryChange}
+          >
+            <option value="all">All Categories</option>
+            {categories.map((cat) => (
+              <option key={cat} value={cat}>
+                {cat}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
 
       {filteredJobs.length === 0 ? (
