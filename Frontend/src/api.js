@@ -1,6 +1,10 @@
 import axios from 'axios';
 
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+// Use localhost in development, Render in production
+const API_URL = process.env.REACT_APP_API_URL || 
+  (process.env.NODE_ENV === 'development' 
+    ? 'http://localhost:5000' 
+    : 'https://civil-guide.onrender.com');
 
 const api = axios.create({
   baseURL: API_URL,

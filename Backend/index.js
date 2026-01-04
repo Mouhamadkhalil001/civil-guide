@@ -139,13 +139,16 @@ app.post('/login', async (req, res) => {
         return res.status(401).json({ error: 'Invalid email or password' });
       }
       
+      // Build full avatar URL (works for both local and production)
+      const baseUrl = process.env.RENDER_EXTERNAL_URL || `http://localhost:${PORT}`;
+      
       res.json({ 
         user: {
           id: user.id,
           name: user.name,
           email: user.email,
           role: user.role,
-          avatar_url: user.avatar_url ? `http://localhost:${PORT}${user.avatar_url}` : null
+          avatar_url: user.avatar_url ? `${baseUrl}${user.avatar_url}` : null
         },
         message: 'Login successful' 
       });
@@ -242,7 +245,9 @@ app.post('/me/avatar', upload.single('avatar'), (req, res) => {
       db.query('SELECT id, name, email, role, avatar_url FROM users WHERE email = ?', [email], (err, results) => {
         if (err) return res.status(500).json(err);
         const updatedUser = results[0];
-        updatedUser.avatar_url = `http://localhost:${PORT}${updatedUser.avatar_url}`;
+        // Build full avatar URL (works for both local and production)
+        const baseUrl = process.env.RENDER_EXTERNAL_URL || `http://localhost:${PORT}`;
+        updatedUser.avatar_url = `${baseUrl}${updatedUser.avatar_url}`;
         res.json(updatedUser);
       });
     });
