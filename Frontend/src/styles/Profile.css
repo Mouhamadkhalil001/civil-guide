@@ -1,0 +1,361 @@
+/* Avatar and Profile Dropdown Styles */
+
+/* Desktop profile - visible on desktop, hidden on mobile */
+.desktop-profile {
+  display: flex;
+}
+
+/* Mobile profile - hidden on desktop, visible on mobile */
+.mobile-profile {
+  display: none;
+}
+
+/* Mobile dropdown (portal) - hidden on desktop */
+.mobile-dropdown {
+  display: none;
+}
+
+/* Desktop dropdown - visible on desktop */
+.desktop-dropdown {
+  display: block;
+}
+
+.navbar-profile {
+  position: relative;
+  margin-left: 15px;
+}
+
+.navbar-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid var(--primary);
+  background: var(--dark-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.navbar-avatar:hover {
+  border-color: var(--primary-dark);
+  transform: scale(1.05);
+}
+
+.avatar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar-initials {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.navbar-dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  min-width: 240px;
+  background: var(--dark-card);
+  border: 1px solid var(--dark-border);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  z-index: 1000;
+  animation: dropdownSlide 0.2s ease;
+}
+
+@keyframes dropdownSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-header {
+  padding: 16px;
+  background: var(--dark-gray);
+  border-bottom: 1px solid var(--dark-border);
+}
+
+.dropdown-user-name {
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+  font-size: 0.95rem;
+}
+
+.dropdown-user-email {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dropdown-divider {
+  height: 1px;
+  background: var(--dark-border);
+  margin: 8px 0;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dropdown-item:hover {
+  background: var(--dark-gray);
+  color: var(--text-primary);
+}
+
+.dropdown-icon {
+  font-size: 18px;
+}
+
+.dropdown-logout {
+  color: #ff6b6b;
+}
+
+.dropdown-logout:hover {
+  background: rgba(255, 107, 107, 0.1);
+  color: #ff5252;
+}
+
+/* Profile Page Styles */
+
+.profile-avatar-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 24px;
+  padding: 20px;
+  background: var(--dark-card);
+  border-radius: 12px;
+  border: 1px solid var(--dark-border);
+}
+
+.profile-avatar-preview {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 3px solid var(--primary);
+  background: var(--dark-gray);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.profile-avatar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-avatar-initials {
+  font-size: 48px;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.profile-avatar-upload {
+  cursor: pointer;
+}
+
+.profile-upload-button {
+  display: inline-block;
+  padding: 8px 20px;
+  background: var(--primary);
+  color: var(--dark);
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.profile-upload-button:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+.profile-avatar-hint {
+  margin-top: 8px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.secondary-button {
+  background: var(--dark-gray) !important;
+  color: var(--text-secondary) !important;
+}
+
+.secondary-button:hover {
+  background: var(--dark-border) !important;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  /* Hide desktop profile, show mobile profile */
+  .desktop-profile {
+    display: none !important;
+  }
+
+  .desktop-dropdown {
+    display: none !important;
+  }
+
+  .mobile-profile {
+    display: flex;
+    position: absolute;
+    right: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 0;
+    z-index: 9999;
+  }
+
+  /* Show mobile dropdown (portal) on mobile */
+  .mobile-dropdown {
+    display: block !important;
+    position: fixed !important;
+    top: 65px !important;
+    right: 10px !important;
+    left: 10px !important;
+    min-width: unset !important;
+    max-width: none !important;
+    width: auto !important;
+    z-index: 99999 !important;
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    animation: dropdownSlide 0.2s ease;
+  }
+
+  /* Override navbar overflow to allow dropdown to show */
+  .navbar,
+  .navbar-inner {
+    overflow: visible !important;
+  }
+
+  .navbar-avatar {
+    width: 36px;
+    height: 36px;
+  }
+
+  .avatar-initials {
+    font-size: 14px;
+  }
+
+  .dropdown-header {
+    padding: 14px;
+  }
+
+  .dropdown-user-name {
+    font-size: 0.9rem;
+  }
+
+  .dropdown-user-email {
+    font-size: 0.8rem;
+  }
+
+  .dropdown-item {
+    padding: 10px 14px;
+    font-size: 0.85rem;
+  }
+
+  .profile-avatar-preview {
+    width: 100px;
+    height: 100px;
+  }
+
+  .profile-avatar-initials {
+    font-size: 40px;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+  .mobile-profile {
+    right: 55px;
+  }
+
+  .navbar-avatar {
+    width: 32px;
+    height: 32px;
+  }
+
+  .avatar-initials {
+    font-size: 12px;
+  }
+
+  .mobile-dropdown {
+    top: 60px !important;
+    right: 8px !important;
+    left: 8px !important;
+  }
+
+  .dropdown-item {
+    padding: 10px 12px;
+    gap: 10px;
+  }
+
+  .dropdown-icon {
+    font-size: 16px;
+  }
+
+  .profile-avatar-preview {
+    width: 80px;
+    height: 80px;
+  }
+
+  .profile-avatar-initials {
+    font-size: 32px;
+  }
+
+  .profile-upload-button {
+    padding: 6px 16px;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .mobile-profile {
+    right: 50px;
+  }
+
+  .navbar-avatar {
+    width: 30px;
+    height: 30px;
+    border-width: 1.5px;
+  }
+
+  .avatar-initials {
+    font-size: 11px;
+  }
+}
