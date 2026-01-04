@@ -9,7 +9,12 @@ const fs = require('fs');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors());
+// CORS configuration - allow frontend access
+const corsOptions = {
+  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+  credentials: true
+};
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // Serve uploaded files statically
@@ -48,18 +53,25 @@ const upload = multer({
   }
 });
 
+// Database configuration - Railway provides MYSQLHOST, MYSQLUSER, etc.
 const db = mysql.createConnection({
-	host: process.env.DB_HOST || 'localhost',
-	user: process.env.DB_USER || 'root',
-	password: process.env.DB_PASSWORD || '',
-	database: process.env.DB_NAME || 'civil_guide',
+	host: process.env.MYSQLHOST || process.env.DB_HOST || 'localhost',
+	user: process.env.MYSQLUSER || process.env.DB_USER || 'root',
+	password: process.env.MYSQLPASSWORD || process.env.DB_PASSWORD || '',
+	database: process.env.MYSQLDATABASE || process.env.DB_NAME || 'railway',
+	port: process.env.MYSQLPORT || 3306,
 });
 
-// Uncomment if you want to log connection status
-// db.connect((err) => {
-//   if (err) console.error('MySQL Connection Error:', err);
-//   else console.log('MySQL Connected!');
-// });
+// Connect to database and log status
+db.connect((err) => {
+  if (err) {
+    console.error('MySQL Connection Error:', err);
+    console.error('Check your database credentials and connection');
+  } else {
+    console.log('✓ MySQL Connected successfully!');
+    console.log(`Database: ${process.env.MYSQLDATABASE || process.env.DB_NAME || 'railway'}`);
+  }
+});
 
 // Health check
 app.get('/health', (_req, res) => {
@@ -335,6 +347,8 @@ app.post('/jobs', (req, res) => {
 	});
 });
 
-app.listen(PORT, () => {
-	console.log(`Server running on port ${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+	console.log(`✓ Server running on port ${PORT}`);
+	console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
+	console.log(`CORS enabled for: ${process.env.FRONTEND_URL || 'http://localhost:3000'}`);
 });
