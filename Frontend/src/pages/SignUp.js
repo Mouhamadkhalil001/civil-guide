@@ -69,7 +69,7 @@ const SignUp = () => {
         // role defaults to 'seeker' on backend
       };
       
-      const response = await register(userData);
+      await register(userData);
       
       alert('Account created successfully! Please sign in.');
       
