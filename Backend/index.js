@@ -9,9 +9,23 @@ const fs = require('fs');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// CORS configuration - allow frontend access
+// CORS configuration - allow frontend access from multiple origins
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://civil-guide.netlify.app',
+  process.env.FRONTEND_URL
+].filter(Boolean);
+
 const corsOptions = {
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true
 };
 app.use(cors(corsOptions));
